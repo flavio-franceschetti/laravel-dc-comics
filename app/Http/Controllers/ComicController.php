@@ -34,14 +34,18 @@ class ComicController extends Controller
         $data = $request->all();
 
         $newComic = new Comic();
-        $newComic->title = $data['title'];
-        $newComic->thumb = $data['thumb'];
-        $newComic->price = $data['price'];
-        $newComic->sale_date = $data['sale_date'];
-        $newComic->type = $data['type'];
-        $newComic->series = $data['series'];
-        $newComic->description = $data['description'];
-        $newComic->slug = Helper::generateSlug($data['title'], Comic::class);
+        // $newComic->title = $data['title'];
+        // $newComic->thumb = $data['thumb'];
+        // $newComic->price = $data['price'];
+        // $newComic->sale_date = $data['sale_date'];
+        // $newComic->type = $data['type'];
+        // $newComic->series = $data['series'];
+        // $newComic->description = $data['description'];
+        // $newComic->slug = Helper::generateSlug($data['title'], Comic::class);
+
+        $data['slug'] = Helper::generateSlug($data['title'], Comic::class);
+        $newComic->fill($data);
+
         $newComic->save();
 
         return redirect()->route('users.show', $newComic->id);
