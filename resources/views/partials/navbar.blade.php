@@ -8,6 +8,7 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <a class="nav-link" href="{{ route('home') }}">Home</a>
+                <a class="nav-link" href="{{ route('users.index') }}">Comics</a>
             </div>
         </div>
     </div>
