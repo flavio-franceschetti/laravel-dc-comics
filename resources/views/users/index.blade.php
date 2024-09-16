@@ -20,6 +20,7 @@
                         <td><img class="thumb" src="{{ $comic->thumb }}" alt=""></td>
                         <td>{{ $comic->title }}</td>
                         <td>{{ $comic->price }}</td>
+                        <td><a class="btn btn-primary" href="{{ route('users.show', $comic) }}">Dettagli</a></td>
                     </tr>
                 @endforeach
             </tbody>
