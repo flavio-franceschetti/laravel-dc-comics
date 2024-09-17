@@ -6,6 +6,7 @@ use App\Models\Comic;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\functions\Helper;
+use Illuminate\Support\Facades\Redirect;
 
 class ComicController extends Controller
 {
@@ -66,7 +67,9 @@ class ComicController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $comic = Comic::find($id);
+
+        return view('users.edit', compact('comic'));
     }
 
     /**
@@ -74,7 +77,22 @@ class ComicController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $data = $request->all();
+
+        $comic = Comic::find($id);
+
+        // condizione per generare un nuovo slug se il titolo cambia nella modifica
+        if($data['title'] === $comic->title){
+            $data['slug'] = $comic->slug;
+        }else{
+            $data['slug'] = Helper::generateSlug($data['title'], Comic::class);
+        }
+
+        $comic->update($data);
+
+        return redirect()->route('users.show', $comic->id);
+
+
     }
 
     /**
@@ -82,6 +100,10 @@ class ComicController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+
+        $comic = Comic::find($id);
+
+        $comic->delete();
+        return redirect()->route('users.index');
     }
 }
