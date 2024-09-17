@@ -49,7 +49,7 @@ class ComicController extends Controller
 
         $newComic->save();
 
-        return redirect()->route('users.show', $newComic->id);
+        return redirect()->route('users.show', $newComic->id)->with('success', 'elemento creato con successo!');
     }
 
     /**
@@ -90,7 +90,7 @@ class ComicController extends Controller
 
         $comic->update($data);
 
-        return redirect()->route('users.show', $comic->id);
+        return redirect()->route('users.show', $comic->id)->with('success', 'elemento modificato con successo!');
 
 
     }
@@ -104,6 +104,6 @@ class ComicController extends Controller
         $comic = Comic::find($id);
 
         $comic->delete();
-        return redirect()->route('users.index');
+        return redirect()->route('users.index')->with('success', 'elemento eliminato con successo!');;
     }
 }

@@ -3,6 +3,11 @@
 @section('content')
     <div class="container">
         <h1>Il fumetto</h1>
+        @if (session('success'))
+            <div class="alert alert-success" role="alert">
+                {{ session('success') }}
+            </div>
+        @endif
         <table class="table">
             <thead>
                 <tr>
