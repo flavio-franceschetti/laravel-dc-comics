@@ -98,6 +98,35 @@ class ComicController extends Controller
      */
     public function update(Request $request, Comic $comic)
     {
+        $request->validate([
+            'title' => 'required|min:3|max:150',
+            'description' => 'min:10|max:255',
+            'thumb' => 'required|min:10|max:255',
+            'price' => 'required|max:5',
+            'series' => 'required|min:3|max:50',
+            'sale_date' => 'required|date',
+            'type' => 'required|min:3|max:50',
+        ], [
+            'title.required' => 'Il campo è obbligatorio',
+            'title.min' => 'Il titolo deve avere almeno :min caratteri.',
+            'title.max' => 'Il titolo deve avere massimo :max caratteri.',
+            'description.min'=> 'La descrizione deve avere almeno :min caratteri.',
+            'description.max'=> 'La descrizione deve avere massimo :max caratteri.',
+            'thumb.required' => 'Il campo è obbligatorio',
+            'thumb.min' => 'L\'url deve avere almeno :min caratteri.',
+            'thumb.max' => 'L\'url deve avere massimo :max caratteri.',
+            'price.required' => 'Il campo è obbligatorio',
+            'price.max' => 'Il prezzo de ve avere massimo :max caratteri.',
+            'series.required' => 'Il campo è obbligatorio',
+            'series.min' => 'La serie deve avere almeno :min caratteri.',
+            'series.max' => 'La serie deve avere massimo :max caratteri.',
+            'sale_date.required' => 'Il campo è obbligatorio',
+            'sale_date.date' => 'La data deve essere una data Y/m/d',
+            'type.required' => 'Il campo è obbligatorio',
+            'type.min' => 'Il tipo deve avere almeno :min caratteri.',
+            'type.max' => 'Il tipo deve avere massimo :max caratteri.',
+        ]);
+
         $data = $request->all();
 
         // $comic = Comic::find($id);
