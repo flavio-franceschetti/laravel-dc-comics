@@ -27,10 +27,10 @@
                         <td>{{ $comic->title }}</td>
                         <td>{{ $comic->price }}</td>
                         <td>
-                            <a class="btn btn-primary" href="{{ route('users.show', $comic) }}">Dettagli</a>
-                            <a class="btn btn-warning" href="{{ route('users.edit', $comic) }}">Modifica</a>
+                            <a class="btn btn-primary" href="{{ route('comics.show', $comic) }}">Dettagli</a>
+                            <a class="btn btn-warning" href="{{ route('comics.edit', $comic) }}">Modifica</a>
                             <form onsubmit="return confirm('Sicuro di voler eliminare?')" class="d-inline" method="POST"
-                                action="{{ route('users.destroy', $comic) }}">
+                                action="{{ route('comics.destroy', $comic) }}">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger">Elimina</button>
